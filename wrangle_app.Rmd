@@ -13,6 +13,8 @@ description: >
 library(learnr)
 library(tidyverse)
 library(shiny)
+library(knitr)
+library(purrr)
 tutorial_options(exercise.timelimit = 60)
 knitr::opts_chunk$set(error = TRUE)
 ```
@@ -45,13 +47,25 @@ selectizeInput("ex_level", "Difficulty", choices = list(
 )
 ```
 
-<!-- To write an exercise -->
-<!-- ```{r name, exercise = TRUE} -->
-<!-- ``` -->
-<!-- ```{r name-solution} -->
-<!-- #insert code solution -->
-<!-- ``` -->
-<!-- -->
-<!-- <div id="name-hint"> -->
-<!-- **Hint:** -->
-<!-- </div> -->
+```{r echo = FALSE, results='asis', include=FALSE}
+make_question <- function(in_var) {
+    knit_expand(text=c("### Regress `mpg` on `{{in_var}}`", 
+                     '```{r lm-{{in_var}}, exercise = TRUE}', 
+                     '#Enter your code here', 
+                     '```'))
+}
+
+make_solution <- function(in_var) {
+  knit_expand(text=c('```{r lm-{{in_var}}-solution}', 
+                     'lm(mpg ~ {{in_var}}, data=mtcars)', 
+                     '```'))
+}
+
+# Generate question and solution chunks
+src <- map(list(make_question, make_solution), 
+           ~map(names(mtcars)[-1], function(variable) .x(variable)))
+
+res <- knit_child(text = unlist(src))
+```
+
+`r res`
