@@ -1,0 +1,57 @@
+---
+title: "Wrangle"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+description: >
+  An interactive tool to teach data wrangling in R.
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+library(shiny)
+tutorial_options(exercise.timelimit = 60)
+knitr::opts_chunk$set(error = TRUE)
+```
+
+## Welcome
+
+Data wrangling includes data transformation, filtering, reshaping, and cleaning. There is currently no tool that teaches data wrangling through interactive exercises that improve skills through high volume repetition/problem solving. Tools like this exist for algorithms and software engineering (HackerRank, LeetCode), but not specifically for data wrangling
+
+## Exercises
+
+Please select a following question based on: (PLACEHOLDER)
+
+```{r, echo=FALSE}
+selectizeInput("ex_topic", "Topic", choices = list(
+  Select = c("Choose one" = ""),
+  Indexing = c(`Exercise 1` = "ex1", `Exercise 2` = "ex2"),
+  Subsetting = c(`Exercise 3` = "ex3", `Exercise 4` = "ex4")
+  )
+)
+```
+
+or
+
+```{r, echo=FALSE}
+selectizeInput("ex_level", "Difficulty", choices = list(
+  Select = c("Choose one" = ""),
+  Easy = c(`Exercise 1` = "ex1", `Exercise 3` = "ex3"),
+  Intermediate = c(`Exercise 2` = "ex2", `Exercise 4` = "ex4")
+  )
+)
+```
+
+<!-- To write an exercise -->
+<!-- ```{r name, exercise = TRUE} -->
+<!-- ``` -->
+<!-- ```{r name-solution} -->
+<!-- #insert code solution -->
+<!-- ``` -->
+<!-- -->
+<!-- <div id="name-hint"> -->
+<!-- **Hint:** -->
+<!-- </div> -->
