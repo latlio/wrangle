@@ -53,8 +53,6 @@ js_code <- "shinyjs.update_location = function(exercise){var base_url = window.l
 #make select input jump to new page
 useShinyjs(rmd = TRUE)
 extendShinyjs(text = js_code, functions = c("update_location"))
-
-js_code
 ```
 
 ```{r, context="server"}
