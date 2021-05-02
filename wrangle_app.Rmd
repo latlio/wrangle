@@ -13,6 +13,7 @@ description: >
 library(learnr)
 library(tidyverse)
 library(shiny)
+library(shinyjs)
 library(knitr)
 tutorial_options(exercise.timelimit = 60)
 knitr::opts_chunk$set(error = TRUE)
@@ -31,7 +32,7 @@ selectizeInput("ex_topic", "Topic", choices = list(
   Select = c("Choose one" = ""),
   Indexing = c(`Exercise 1` = "ex1", `Exercise 2` = "ex2"),
   Subsetting = c(`Exercise 3` = "ex3", `Exercise 4` = "ex4")
-  )
+)
 )
 ```
 
@@ -40,31 +41,54 @@ or
 ```{r, echo=FALSE}
 selectizeInput("ex_level", "Difficulty", choices = list(
   Select = c("Choose one" = ""),
-  Easy = c(`Exercise 1` = "ex1", `Exercise 3` = "ex3"),
+  Easy = c(`Exercise 1` = "1", `Exercise 3` = "3"),
   Intermediate = c(`Exercise 2` = "ex2", `Exercise 4` = "ex4")
-  )
 )
+)
+```
+
+```{r, echo=FALSE}
+js_code <- "shinyjs.update_location = function(exercise){var base_url = window.location.href.replace(window.location.hash,''); var href = base_url + '#section-' + exercise; window.location = href;}"
+
+#make select input jump to new page
+useShinyjs(rmd = TRUE)
+extendShinyjs(text = js_code, functions = c("update_location"))
+
+js_code
+```
+
+```{r, context="server"}
+observeEvent(input$ex_topic, {
+  js$update_location(input$ex_topic)
+})
 ```
 
 ```{r echo = FALSE, results='asis', include=FALSE}
 make_question <- function(in_var) {
-    knit_expand(text=c("### Regress `mpg` on `{{in_var}}`", 
-                     '```{r lm-{{in_var}}, exercise = TRUE}', 
-                     '#Enter your code here', 
+  knit_expand(text=c("### Regress `mpg` on `{{in_var}}`",
+                     '```{r lm-{{in_var}}, exercise = TRUE}',
+                     '#Enter your code here',
                      '```'))
 }
 
 make_solution <- function(in_var) {
-  knit_expand(text=c('```{r lm-{{in_var}}-solution}', 
-                     'lm(mpg ~ {{in_var}}, data=mtcars)', 
+  knit_expand(text=c('```{r lm-{{in_var}}-solution}',
+                     'lm(mpg ~ {{in_var}}, data=mtcars)',
                      '```'))
 }
 
 # Generate question and solution chunks
-src <- map(list(make_question, make_solution), 
+src <- map(list(make_question, make_solution),
            ~map(names(mtcars)[-1], function(variable) .x(variable)))
 
 res <- knit_child(text = unlist(src))
 ```
 
 `r res`
+
+<!--- this code currently skips welcome, we should consider how to render exercises --->
+
+
+## ex1
+
+## ex2
