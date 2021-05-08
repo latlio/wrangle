@@ -27,7 +27,7 @@ Data wrangling includes data transformation, filtering, reshaping, and cleaning.
 ```{r echo = FALSE, results='asis', include=FALSE}
 make_topic <- function(topic_name, question_fun, solution_fun, params) { 
   src <- map(list(question_fun, solution_fun),
-           ~pmap(params, .x))
+             ~pmap(params, .x))
   src[[1]] <- append(list(paste0("## ", topic_name)), src[[1]])
   src
 }
@@ -42,13 +42,23 @@ make_regression_question <- function(in_var) {
 make_regression_solution <- function(in_var) {
   knit_expand(text=c('```{r lm-{{in_var}}-solution}',
                      'lm(mpg ~ {{in_var}}, data=mtcars)',
-                     '```'))
+                     '```',
+                     '```{r lm-{{in_var}}-check}',
+                     'solution <- lm(mpg ~ {{in_var}}, data=mtcars)
+                     test <- 2',
+                     'grade_this({
+  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {
+    pass("Great work!")
+  }
+  fail("Try again!")
+})',
+'```'))
 }
 
 regression_params <- tibble(in_var = names(mtcars)[-1])
 
 src <- make_topic("Regression", make_regression_question,
-                   make_regression_solution, regression_params)
+                  make_regression_solution, regression_params)
 
 res <- knit_child(text = unlist(src))
 ```
