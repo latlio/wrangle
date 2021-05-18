@@ -1,0 +1,80 @@
+---
+title: "Wrangle: `purrr`"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+description: >
+  An interactive tool to teach data wrangling in R.
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+library(shiny)
+library(shinyjs)
+library(knitr)
+tutorial_options(exercise.timelimit = 60)
+knitr::opts_chunk$set(error = TRUE)
+gradethis::gradethis_setup()
+```
+
+## Welcome
+
+Data wrangling includes data transformation, filtering, reshaping, and cleaning. There is currently no tool that teaches data wrangling through interactive exercises that improve skills through high volume repetition/problem solving. Tools like this exist for algorithms and software engineering (HackerRank, LeetCode), but not specifically for data wrangling
+
+```{r echo = FALSE, results='asis', include=FALSE}
+make_topic <- function(topic_name, question_fun, solution_fun, params) { 
+  src <- map(list(question_fun, solution_fun),
+             ~pmap(params, .x))
+  src[[1]] <- append(list(paste0("## ", topic_name)), src[[1]])
+  src
+}
+
+make_question <- function(exercise_title,
+                          exercise_text,
+                          exercise_name,
+                          ...) {
+  knit_expand(text=c("### {{exercise_title}}`",
+                     "{{exercise_text}}",
+                     '```{r {{exercise_name}}, exercise = TRUE}',
+                     '#Enter your code here',
+                     '```'))
+}
+
+make_solution <- function(exercise_name,
+                          check_code = 0,
+                          solution_code,
+                          ...) {
+  if (check_code == 1) {
+    check_chunk <- c('```{r {{exercise_name}}-code-check}',
+                     'grade_code()')
+  } else {
+    check_chunk <- c('```{r {{exercise_name}}-check}',
+                     "set.seed(50)",
+                     'solution <- {{solution_code}}',
+                     'grade_this({
+  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {
+    pass("Great work!")
+  }
+  fail("Try again!")
+})')
+  }
+  knit_expand(text=c('```{r {{exercise_name}}-solution}',
+                     '{{solution_code}}',
+                     '```',
+                     check_chunk,
+                     '```'))
+}
+
+param_google_sheets <- "https://docs.google.com/spreadsheets/d/18IBUDzUPxJg69Z9J9io0-9Hn39DXfzmhjWjDCW9ghDk/edit#gid=0"
+params <- googlesheets4::read_sheet(param_google_sheets)
+
+src <- make_topic("map", make_question,
+                  make_solution, params)
+
+res <- knit_child(text = unlist(src))
+```
+
+`r res`
