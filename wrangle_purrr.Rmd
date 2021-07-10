@@ -36,7 +36,7 @@ make_question <- function(exercise_title,
                           exercise_text,
                           exercise_name,
                           ...) {
-  knit_expand(text=c("### {{exercise_title}}`",
+  knit_expand(text=c("### {{exercise_title}}",
                      "{{exercise_text}}",
                      '```{r {{exercise_name}}, exercise = TRUE}',
                      '#Enter your code here',
@@ -68,13 +68,21 @@ make_solution <- function(exercise_name,
                      '```'))
 }
 
+googlesheets4::gs4_deauth()
 param_google_sheets <- "https://docs.google.com/spreadsheets/d/18IBUDzUPxJg69Z9J9io0-9Hn39DXfzmhjWjDCW9ghDk/edit#gid=0"
-params <- googlesheets4::read_sheet(param_google_sheets)
+
+map_params <- googlesheets4::read_sheet(param_google_sheets)
+map2_params <- googlesheets4::read_sheet(param_google_sheets, sheet = "Sheet2")
 
 src <- make_topic("map", make_question,
-                  make_solution, params)
+                  make_solution, map_params)
+src2 <- make_topic("map2", make_question,
+                  make_solution, map2_params)
 
 res <- knit_child(text = unlist(src))
+res2 <- knit_child(text = unlist(src2))
 ```
 
 `r res`
+
+`r res2`

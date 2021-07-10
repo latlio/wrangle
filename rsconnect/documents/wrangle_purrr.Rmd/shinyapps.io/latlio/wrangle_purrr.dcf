@@ -1,0 +1,13 @@
+name: wrangle_purrr
+title: wrangle_purrr
+username:
+account: latlio
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4371698
+bundleId: 4806233
+url: https://latlio.shinyapps.io/wrangle_purrr/
+when: 1625921536.67408
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: wrangle_app.html|wrangle_app.Rmd
