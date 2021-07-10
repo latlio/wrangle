@@ -26,6 +26,7 @@ Data wrangling includes data transformation, filtering, reshaping, and cleaning.
 
 ```{r echo = FALSE, results='asis', include=FALSE}
 make_topic <- function(topic_name, question_fun, solution_fun, params) { 
+  browser()
   src <- map(list(question_fun, solution_fun),
              ~pmap(params, .x))
   src[[1]] <- append(list(paste0("## ", topic_name)), src[[1]])

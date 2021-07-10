@@ -267,13 +267,9 @@ output$`tutorial-exercise-lm-cyl-output` <- renderUI({
 learnr:::store_exercise_cache("lm-cyl", list(setup = NULL, chunks = list(list(label = "lm-cyl", code = "#Enter your code here", 
     opts = list(label = "\"lm-cyl\"", exercise = "TRUE"), engine = "r")), 
     code_check = NULL, error_check = NULL, check = structure(c("solution <- lm(mpg ~ cyl, data=mtcars)", 
-    "                     test <- 2", "grade_this({", "  # custom checking code appears here", 
-    "  ", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
-    "    pass(\"Great work!\")", "  }", "  print(solution)", 
-    "  print(.result)", "  print(identical(.result, solution, ignore.environment = T))", 
-    "  print(waldo::compare(.result, solution, ignore_formula_env = T))", 
-    "  fail(\"Try again!\")", "})"), chunk_opts = list(label = "lm-cyl-check")), 
-    solution = structure("lm(mpg ~ cyl, data=mtcars)", chunk_opts = list(
+    "                     test <- 2", "grade_this({", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
+    "    pass(\"Great work!\")", "  }", "  fail(\"Try again!\")", 
+    "})"), chunk_opts = list(label = "lm-cyl-check")), solution = structure("lm(mpg ~ cyl, data=mtcars)", chunk_opts = list(
         label = "lm-cyl-solution")), options = list(eval = FALSE, 
         echo = TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, 
         collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
@@ -309,13 +305,9 @@ output$`tutorial-exercise-lm-disp-output` <- renderUI({
 learnr:::store_exercise_cache("lm-disp", list(setup = NULL, chunks = list(list(label = "lm-disp", code = "#Enter your code here", 
     opts = list(label = "\"lm-disp\"", exercise = "TRUE"), engine = "r")), 
     code_check = NULL, error_check = NULL, check = structure(c("solution <- lm(mpg ~ disp, data=mtcars)", 
-    "                     test <- 2", "grade_this({", "  # custom checking code appears here", 
-    "  ", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
-    "    pass(\"Great work!\")", "  }", "  print(solution)", 
-    "  print(.result)", "  print(identical(.result, solution, ignore.environment = T))", 
-    "  print(waldo::compare(.result, solution, ignore_formula_env = T))", 
-    "  fail(\"Try again!\")", "})"), chunk_opts = list(label = "lm-disp-check")), 
-    solution = structure("lm(mpg ~ disp, data=mtcars)", chunk_opts = list(
+    "                     test <- 2", "grade_this({", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
+    "    pass(\"Great work!\")", "  }", "  fail(\"Try again!\")", 
+    "})"), chunk_opts = list(label = "lm-disp-check")), solution = structure("lm(mpg ~ disp, data=mtcars)", chunk_opts = list(
         label = "lm-disp-solution")), options = list(eval = FALSE, 
         echo = TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, 
         collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
@@ -351,13 +343,9 @@ output$`tutorial-exercise-lm-hp-output` <- renderUI({
 learnr:::store_exercise_cache("lm-hp", list(setup = NULL, chunks = list(list(label = "lm-hp", code = "#Enter your code here", 
     opts = list(label = "\"lm-hp\"", exercise = "TRUE"), engine = "r")), 
     code_check = NULL, error_check = NULL, check = structure(c("solution <- lm(mpg ~ hp, data=mtcars)", 
-    "                     test <- 2", "grade_this({", "  # custom checking code appears here", 
-    "  ", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
-    "    pass(\"Great work!\")", "  }", "  print(solution)", 
-    "  print(.result)", "  print(identical(.result, solution, ignore.environment = T))", 
-    "  print(waldo::compare(.result, solution, ignore_formula_env = T))", 
-    "  fail(\"Try again!\")", "})"), chunk_opts = list(label = "lm-hp-check")), 
-    solution = structure("lm(mpg ~ hp, data=mtcars)", chunk_opts = list(
+    "                     test <- 2", "grade_this({", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
+    "    pass(\"Great work!\")", "  }", "  fail(\"Try again!\")", 
+    "})"), chunk_opts = list(label = "lm-hp-check")), solution = structure("lm(mpg ~ hp, data=mtcars)", chunk_opts = list(
         label = "lm-hp-solution")), options = list(eval = FALSE, 
         echo = TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, 
         collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
@@ -393,13 +381,9 @@ output$`tutorial-exercise-lm-drat-output` <- renderUI({
 learnr:::store_exercise_cache("lm-drat", list(setup = NULL, chunks = list(list(label = "lm-drat", code = "#Enter your code here", 
     opts = list(label = "\"lm-drat\"", exercise = "TRUE"), engine = "r")), 
     code_check = NULL, error_check = NULL, check = structure(c("solution <- lm(mpg ~ drat, data=mtcars)", 
-    "                     test <- 2", "grade_this({", "  # custom checking code appears here", 
-    "  ", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
-    "    pass(\"Great work!\")", "  }", "  print(solution)", 
-    "  print(.result)", "  print(identical(.result, solution, ignore.environment = T))", 
-    "  print(waldo::compare(.result, solution, ignore_formula_env = T))", 
-    "  fail(\"Try again!\")", "})"), chunk_opts = list(label = "lm-drat-check")), 
-    solution = structure("lm(mpg ~ drat, data=mtcars)", chunk_opts = list(
+    "                     test <- 2", "grade_this({", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
+    "    pass(\"Great work!\")", "  }", "  fail(\"Try again!\")", 
+    "})"), chunk_opts = list(label = "lm-drat-check")), solution = structure("lm(mpg ~ drat, data=mtcars)", chunk_opts = list(
         label = "lm-drat-solution")), options = list(eval = FALSE, 
         echo = TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, 
         collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
@@ -435,13 +419,9 @@ output$`tutorial-exercise-lm-wt-output` <- renderUI({
 learnr:::store_exercise_cache("lm-wt", list(setup = NULL, chunks = list(list(label = "lm-wt", code = "#Enter your code here", 
     opts = list(label = "\"lm-wt\"", exercise = "TRUE"), engine = "r")), 
     code_check = NULL, error_check = NULL, check = structure(c("solution <- lm(mpg ~ wt, data=mtcars)", 
-    "                     test <- 2", "grade_this({", "  # custom checking code appears here", 
-    "  ", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
-    "    pass(\"Great work!\")", "  }", "  print(solution)", 
-    "  print(.result)", "  print(identical(.result, solution, ignore.environment = T))", 
-    "  print(waldo::compare(.result, solution, ignore_formula_env = T))", 
-    "  fail(\"Try again!\")", "})"), chunk_opts = list(label = "lm-wt-check")), 
-    solution = structure("lm(mpg ~ wt, data=mtcars)", chunk_opts = list(
+    "                     test <- 2", "grade_this({", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
+    "    pass(\"Great work!\")", "  }", "  fail(\"Try again!\")", 
+    "})"), chunk_opts = list(label = "lm-wt-check")), solution = structure("lm(mpg ~ wt, data=mtcars)", chunk_opts = list(
         label = "lm-wt-solution")), options = list(eval = FALSE, 
         echo = TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, 
         collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
@@ -477,13 +457,9 @@ output$`tutorial-exercise-lm-qsec-output` <- renderUI({
 learnr:::store_exercise_cache("lm-qsec", list(setup = NULL, chunks = list(list(label = "lm-qsec", code = "#Enter your code here", 
     opts = list(label = "\"lm-qsec\"", exercise = "TRUE"), engine = "r")), 
     code_check = NULL, error_check = NULL, check = structure(c("solution <- lm(mpg ~ qsec, data=mtcars)", 
-    "                     test <- 2", "grade_this({", "  # custom checking code appears here", 
-    "  ", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
-    "    pass(\"Great work!\")", "  }", "  print(solution)", 
-    "  print(.result)", "  print(identical(.result, solution, ignore.environment = T))", 
-    "  print(waldo::compare(.result, solution, ignore_formula_env = T))", 
-    "  fail(\"Try again!\")", "})"), chunk_opts = list(label = "lm-qsec-check")), 
-    solution = structure("lm(mpg ~ qsec, data=mtcars)", chunk_opts = list(
+    "                     test <- 2", "grade_this({", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
+    "    pass(\"Great work!\")", "  }", "  fail(\"Try again!\")", 
+    "})"), chunk_opts = list(label = "lm-qsec-check")), solution = structure("lm(mpg ~ qsec, data=mtcars)", chunk_opts = list(
         label = "lm-qsec-solution")), options = list(eval = FALSE, 
         echo = TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, 
         collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
@@ -519,13 +495,9 @@ output$`tutorial-exercise-lm-vs-output` <- renderUI({
 learnr:::store_exercise_cache("lm-vs", list(setup = NULL, chunks = list(list(label = "lm-vs", code = "#Enter your code here", 
     opts = list(label = "\"lm-vs\"", exercise = "TRUE"), engine = "r")), 
     code_check = NULL, error_check = NULL, check = structure(c("solution <- lm(mpg ~ vs, data=mtcars)", 
-    "                     test <- 2", "grade_this({", "  # custom checking code appears here", 
-    "  ", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
-    "    pass(\"Great work!\")", "  }", "  print(solution)", 
-    "  print(.result)", "  print(identical(.result, solution, ignore.environment = T))", 
-    "  print(waldo::compare(.result, solution, ignore_formula_env = T))", 
-    "  fail(\"Try again!\")", "})"), chunk_opts = list(label = "lm-vs-check")), 
-    solution = structure("lm(mpg ~ vs, data=mtcars)", chunk_opts = list(
+    "                     test <- 2", "grade_this({", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
+    "    pass(\"Great work!\")", "  }", "  fail(\"Try again!\")", 
+    "})"), chunk_opts = list(label = "lm-vs-check")), solution = structure("lm(mpg ~ vs, data=mtcars)", chunk_opts = list(
         label = "lm-vs-solution")), options = list(eval = FALSE, 
         echo = TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, 
         collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
@@ -561,13 +533,9 @@ output$`tutorial-exercise-lm-am-output` <- renderUI({
 learnr:::store_exercise_cache("lm-am", list(setup = NULL, chunks = list(list(label = "lm-am", code = "#Enter your code here", 
     opts = list(label = "\"lm-am\"", exercise = "TRUE"), engine = "r")), 
     code_check = NULL, error_check = NULL, check = structure(c("solution <- lm(mpg ~ am, data=mtcars)", 
-    "                     test <- 2", "grade_this({", "  # custom checking code appears here", 
-    "  ", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
-    "    pass(\"Great work!\")", "  }", "  print(solution)", 
-    "  print(.result)", "  print(identical(.result, solution, ignore.environment = T))", 
-    "  print(waldo::compare(.result, solution, ignore_formula_env = T))", 
-    "  fail(\"Try again!\")", "})"), chunk_opts = list(label = "lm-am-check")), 
-    solution = structure("lm(mpg ~ am, data=mtcars)", chunk_opts = list(
+    "                     test <- 2", "grade_this({", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
+    "    pass(\"Great work!\")", "  }", "  fail(\"Try again!\")", 
+    "})"), chunk_opts = list(label = "lm-am-check")), solution = structure("lm(mpg ~ am, data=mtcars)", chunk_opts = list(
         label = "lm-am-solution")), options = list(eval = FALSE, 
         echo = TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, 
         collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
@@ -603,13 +571,9 @@ output$`tutorial-exercise-lm-gear-output` <- renderUI({
 learnr:::store_exercise_cache("lm-gear", list(setup = NULL, chunks = list(list(label = "lm-gear", code = "#Enter your code here", 
     opts = list(label = "\"lm-gear\"", exercise = "TRUE"), engine = "r")), 
     code_check = NULL, error_check = NULL, check = structure(c("solution <- lm(mpg ~ gear, data=mtcars)", 
-    "                     test <- 2", "grade_this({", "  # custom checking code appears here", 
-    "  ", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
-    "    pass(\"Great work!\")", "  }", "  print(solution)", 
-    "  print(.result)", "  print(identical(.result, solution, ignore.environment = T))", 
-    "  print(waldo::compare(.result, solution, ignore_formula_env = T))", 
-    "  fail(\"Try again!\")", "})"), chunk_opts = list(label = "lm-gear-check")), 
-    solution = structure("lm(mpg ~ gear, data=mtcars)", chunk_opts = list(
+    "                     test <- 2", "grade_this({", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
+    "    pass(\"Great work!\")", "  }", "  fail(\"Try again!\")", 
+    "})"), chunk_opts = list(label = "lm-gear-check")), solution = structure("lm(mpg ~ gear, data=mtcars)", chunk_opts = list(
         label = "lm-gear-solution")), options = list(eval = FALSE, 
         echo = TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, 
         collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
@@ -645,13 +609,9 @@ output$`tutorial-exercise-lm-carb-output` <- renderUI({
 learnr:::store_exercise_cache("lm-carb", list(setup = NULL, chunks = list(list(label = "lm-carb", code = "#Enter your code here", 
     opts = list(label = "\"lm-carb\"", exercise = "TRUE"), engine = "r")), 
     code_check = NULL, error_check = NULL, check = structure(c("solution <- lm(mpg ~ carb, data=mtcars)", 
-    "                     test <- 2", "grade_this({", "  # custom checking code appears here", 
-    "  ", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
-    "    pass(\"Great work!\")", "  }", "  print(solution)", 
-    "  print(.result)", "  print(identical(.result, solution, ignore.environment = T))", 
-    "  print(waldo::compare(.result, solution, ignore_formula_env = T))", 
-    "  fail(\"Try again!\")", "})"), chunk_opts = list(label = "lm-carb-check")), 
-    solution = structure("lm(mpg ~ carb, data=mtcars)", chunk_opts = list(
+    "                     test <- 2", "grade_this({", "  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {", 
+    "    pass(\"Great work!\")", "  }", "  fail(\"Try again!\")", 
+    "})"), chunk_opts = list(label = "lm-carb-check")), solution = structure("lm(mpg ~ carb, data=mtcars)", chunk_opts = list(
         label = "lm-carb-solution")), options = list(eval = FALSE, 
         echo = TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, 
         collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
@@ -688,7 +648,7 @@ learnr:::store_exercise_cache("lm-carb", list(setup = NULL, chunks = list(list(l
 <!--/html_preserve-->
 <!--html_preserve-->
 <script type="application/shiny-prerendered" data-context="execution_dependencies">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84]}},"value":[{"type":"character","attributes":{},"value":["assertthat","backports","base","broom","bslib","cellranger","checkmate","cli","colorspace","compiler","crayon","curl","datasets","DBI","dbplyr","digest","dplyr","ellipsis","evaluate","fansi","fastmap","forcats","fs","generics","ggplot2","glue","gradethis","graphics","grDevices","grid","gtable","haven","hms","htmltools","htmlwidgets","httpuv","httr","jquerylib","jsonlite","knitr","later","learnr","lifecycle","lubridate","magrittr","markdown","methods","mime","modelr","munsell","pillar","pkgconfig","promises","purrr","R6","Rcpp","readr","readxl","reprex","rlang","rmarkdown","rprojroot","rstudioapi","rvest","sass","scales","shiny","shinyjs","stats","stringi","stringr","tibble","tidyr","tidyselect","tidyverse","tools","utf8","utils","vctrs","withr","xfun","xml2","xtable","yaml"]},{"type":"character","attributes":{},"value":["0.2.1","1.2.1","4.0.5","0.7.6","0.2.4","1.1.0","2.0.0","2.5.0","2.0-0","4.0.5","1.4.1","4.3.1","4.0.5","1.1.1","2.1.1","0.6.27","1.0.5","0.3.2","0.14","0.4.2","1.1.0","0.5.1","1.5.0","0.1.0","3.3.3","1.4.2","0.2.3.9001","4.0.5","4.0.5","4.0.5","0.3.0","2.4.1","1.0.0","0.5.1.9003","1.5.3","1.6.0","1.4.2","0.1.4","1.7.2","1.33","1.2.0","0.10.1.9009","1.0.0","1.7.10","2.0.1","1.1","4.0.5","0.10","0.1.8","0.5.0","1.6.0","2.0.3","1.2.0.1","0.3.4","2.5.0","1.0.6","1.4.0","1.3.1","2.0.0","0.4.11.9000","2.8","2.0.2","0.13","1.0.0","0.3.1","1.1.1","1.6.0","2.0.0","4.0.5","1.5.3","1.4.0","3.1.1","1.1.3","1.1.0","1.3.1","4.0.5","1.2.1","4.0.5","0.3.8","2.4.2","0.22","1.3.2","1.8-4","2.2.1"]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85]}},"value":[{"type":"character","attributes":{},"value":["assertthat","backports","base","blob","broom","bslib","cellranger","checkmate","cli","colorspace","compiler","crayon","curl","datasets","DBI","dbplyr","digest","dplyr","ellipsis","evaluate","fansi","fastmap","forcats","fs","generics","ggplot2","glue","gradethis","graphics","grDevices","grid","gtable","haven","hms","htmltools","htmlwidgets","httpuv","httr","jquerylib","jsonlite","knitr","later","learnr","lifecycle","lubridate","magrittr","markdown","methods","mime","modelr","munsell","pillar","pkgconfig","promises","purrr","R6","Rcpp","readr","readxl","reprex","rlang","rmarkdown","rprojroot","rstudioapi","rvest","sass","scales","shiny","shinyjs","stats","stringi","stringr","tibble","tidyr","tidyselect","tidyverse","tools","utf8","utils","vctrs","withr","xfun","xml2","xtable","yaml"]},{"type":"character","attributes":{},"value":["0.2.1","1.2.1","4.0.2","1.2.1","0.7.0","0.2.4.9003","1.1.0","2.0.0","2.5.0","2.0-0","4.0.2","1.4.1","4.3.1","4.0.2","1.1.0","1.4.4","0.6.27","1.0.3","0.3.2","0.14","0.4.2","1.1.0","0.5.0","1.5.0","0.1.0","3.3.3","1.4.2","0.2.3.9001","4.0.2","4.0.2","4.0.2","0.3.0","2.3.1","0.5.3","0.5.1.9003","1.5.3","1.6.0","1.4.2","0.1.4","1.7.2","1.33","1.2.0","0.10.1.9009","1.0.0","1.7.9","2.0.1","1.1","4.0.2","0.10","0.1.8","0.5.0","1.6.0","2.0.3","1.2.0.1","0.3.4","2.5.0","1.0.6","1.3.1","1.3.1","0.3.0","0.4.11.9000","2.8","2.0.2","0.13","0.3.6","0.3.1.9003","1.1.1","1.6.0.9000","2.0.0","4.0.2","1.5.3","1.4.0","3.1.1","1.1.2","1.1.0","1.3.0","4.0.2","1.2.1","4.0.2","0.3.8","2.4.2","0.22","1.3.2","1.8-4","2.2.1"]}]}]}
 </script>
 <!--/html_preserve-->
 </div>
