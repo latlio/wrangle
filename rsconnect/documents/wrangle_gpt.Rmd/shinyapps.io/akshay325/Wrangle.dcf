@@ -5,10 +5,10 @@ account: akshay325
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 8593870
-bundleId: 6973678
+bundleId: 7096186
 url: https://akshay325.shinyapps.io/Wrangle/
-when: 1679094146.70291
-lastSyncTime: 1679094146.70294
+when: 1681667218.91988
+lastSyncTime: 1681667218.91988
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: README.md|wrangle_app.html|wrangle_app.Rmd|wrangle_gpt.html|wrangle_purrr.html|wrangle_purrr.Rmd
