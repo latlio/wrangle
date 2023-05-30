@@ -1,0 +1,14 @@
+name: wrangle_premium
+title: wrangle_premium
+username:
+account: akshay325
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9011704
+bundleId: 7165209
+url: https://akshay325.shinyapps.io/wrangle_premium/
+when: 1683053304.36245
+lastSyncTime: 1683053304.36246
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: README.md|wrangle_app.html|wrangle_app.Rmd|wrangle_gpt_lite.html|wrangle_gpt_lite.Rmd|wrangle_gpt.html|wrangle_purrr.html|wrangle_purrr.Rmd

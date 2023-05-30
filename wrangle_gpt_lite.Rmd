@@ -1,0 +1,100 @@
+---
+title: "Wrangle"
+output: 
+  learnr::tutorial:
+    progressive: false
+    allow_skip: true
+runtime: shiny_prerendered
+description: >
+  An interactive tool to teach data wrangling in R.
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+library(shiny)
+library(shinyjs)
+library(knitr)
+library(Lahman)
+library(AER)
+data("DoctorVisits")
+tutorial_options(exercise.timelimit = 60)
+knitr::opts_chunk$set(error = TRUE)
+gradethis::gradethis_setup()
+```
+
+## Welcome
+
+Data wrangling includes data transformation, filtering, reshaping, and cleaning. There is currently no tool that teaches data wrangling through interactive exercises that improve skills through high volume repetition/problem solving. Tools like this exist for algorithms and software engineering (HackerRank, LeetCode), but not specifically for data wrangling.
+
+We hope Wrangle helps you on your data science journey!
+
+Note: Wrangle is still a work in progress — if you have any feedback [please submit it here](https://docs.google.com/forms/d/e/1FAIpQLSfg0RSzLw2MXCAUJMgsXCGeey7zA5y_pjVt8P24eeQySNOgaA/viewform?usp=sf_link).
+
+```{r echo = FALSE, results='asis', include=FALSE}
+make_topic <- function(topic_name, question_fun, solution_fun, params) { 
+  src <- map(list(question_fun, solution_fun),
+             ~pmap(params, .x))
+  src[[1]] <- append(list(paste0("## ", topic_name)), src[[1]])
+  src
+}
+
+make_question <- function(exercise_title,
+                          exercise_text,
+                          exercise_name,
+                          ...) {
+  knit_expand(text=c("### {{exercise_title}}",
+                     "{{exercise_text}}",
+                     '```{r {{exercise_name}}, exercise = TRUE}',
+                     '#Enter your code here',
+                     '```'))
+}
+
+make_solution <- function(exercise_name,
+                          check_code = 0,
+                          solution_code,
+                          ...) {
+  if (check_code == 1) {
+    check_chunk <- c('```{r {{exercise_name}}-code-check}',
+                     'grade_code()')
+  } else {
+    check_chunk <- c('```{r {{exercise_name}}-check}',
+                     "set.seed(50)",
+                     "solution_return <- function() { {{solution_code}} }",
+                     #'solution <- {{solution_code}}',
+                     'solution <- solution_return()',
+                     'grade_this({
+  if (length(waldo::compare(.result, solution, ignore_formula_env = T)) == 0) {
+    pass("Great work!")
+  }
+  fail("Try again!")
+  # fail(waldo::compare(.result, solution, ignore_formula_env = T))
+})')
+  }
+  knit_expand(text=c('```{r {{exercise_name}}-solution}',
+                     '{{solution_code}}',
+                     '```',
+                     check_chunk,
+                     '```'))
+}
+
+googlesheets4::gs4_deauth()
+param_google_sheets <- "https://docs.google.com/spreadsheets/d/18IBUDzUPxJg69Z9J9io0-9Hn39DXfzmhjWjDCW9ghDk/edit#gid=0"
+all_sheets_base <- googlesheets4::sheet_names(param_google_sheets) 
+all_sheets <- all_sheets_base[which(!grepl("\\[exclude\\]", all_sheets_base))]
+all_params <- map(all_sheets, 
+                  ~googlesheets4::read_sheet(param_google_sheets, sheet = .x) %>% 
+                    filter(exercise_title %in% paste0("Exercise ", 1:5))) %>% 
+  setNames(all_sheets)
+
+all_src <- imap(all_params, ~make_topic(.y, make_question, make_solution, .x))
+all_res <- map(all_src, ~knit_child(text = unlist(.x)))
+
+```
+
+```{r echo = FALSE, results='asis', message = F}
+map(all_res, cat)
+```
+
+## About
+Created by [Akshay Swaminathan](https://www.linkedin.com/in/akshay-swaminathan-68286b51/) and [Lathan Liou](https://lathanliou.com/)

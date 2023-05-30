@@ -1,0 +1,14 @@
+name: wrangle_gpt_lite
+title: wrangle_gpt_lite
+username:
+account: akshay325
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9011623
+bundleId: 7165145
+url: https://akshay325.shinyapps.io/wrangle_gpt_lite/
+when: 1683052410.73483
+lastSyncTime: 1683052410.73485
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: README.md|wrangle_app.html|wrangle_app.Rmd|wrangle_gpt_lite.html|wrangle_gpt.html|wrangle_gpt.Rmd|wrangle_purrr.html|wrangle_purrr.Rmd
