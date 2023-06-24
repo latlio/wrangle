@@ -18,18 +18,61 @@ library(knitr)
 library(Lahman)
 library(AER)
 data("DoctorVisits")
+chick_weight <- ChickWeight <- as_tibble(ChickWeight)
+orange <- Orange <- as_tibble(Orange)
 tutorial_options(exercise.timelimit = 60)
 knitr::opts_chunk$set(error = TRUE)
 gradethis::gradethis_setup()
+
+db_con <- DBI::dbConnect(RSQLite::SQLite(), dbname = ":memory:")
+DBI::dbWriteTable(db_con, "iris", iris %>% 
+                    rename_all(~tolower(gsub("\\.", "_", .x))))
+DBI::dbWriteTable(db_con, "mtcars", mtcars %>% 
+                    rename_all(~tolower(gsub("\\.", "_", .x))))
+DBI::dbWriteTable(db_con, "chick_weight", ChickWeight %>% 
+                    rename_all(~tolower(gsub("\\.", "_", .x))))
+DBI::dbWriteTable(db_con, "diamonds", ggplot2::diamonds %>% 
+                    rename_all(~tolower(gsub("\\.", "_", .x))))
+DBI::dbWriteTable(db_con, "Orange", Orange %>% 
+                    rename_all(~tolower(gsub("\\.", "_", .x))))
+DBI::dbWriteTable(db_con, "PlantGrowth", PlantGrowth %>% 
+                    rename_all(~tolower(gsub("\\.", "_", .x))))
+DBI::dbWriteTable(db_con, "airquality", airquality %>% 
+                    rename_all(~tolower(gsub("\\.", "_", .x))))
+DBI::dbWriteTable(db_con, "ToothGrowth", ToothGrowth %>% 
+                    rename_all(~tolower(gsub("\\.", "_", .x))))
+DBI::dbWriteTable(db_con, "Batting", Lahman::Batting %>% 
+                    rename_all(~tolower(gsub("\\.", "_", .x))))
+DBI::dbWriteTable(db_con, "Salaries", Lahman::Salaries %>% 
+                    rename_all(~tolower(gsub("\\.", "_", .x))))
+DBI::dbWriteTable(db_con, "storms", dplyr::storms %>% 
+                    rename_all(~tolower(gsub("\\.", "_", .x))))
+
 ```
 
-## Welcome
+## Welcome to **Wrangle**
 
-Data wrangling includes data transformation, filtering, reshaping, and cleaning. There is currently no tool that teaches data wrangling through interactive exercises that improve skills through high volume repetition/problem solving. Tools like this exist for algorithms and software engineering (HackerRank, LeetCode), but not specifically for data wrangling.
+Data wrangling includes data transformation, filtering, reshaping, and cleaning. We made **Wrangle** to teach data wrangling through interactive exercises that improve skills through high volume repetition/problem solving. **Wrangle** has problems for R and SQL.
 
-We hope Wrangle helps you on your data science journey!
+We hope **Wrangle** helps you on your data science journey!
 
-Note: Wrangle is still a work in progress — if you have any feedback [please submit it here](https://docs.google.com/forms/d/e/1FAIpQLSfg0RSzLw2MXCAUJMgsXCGeey7zA5y_pjVt8P24eeQySNOgaA/viewform?usp=sf_link).
+**Wrangle** is still a work in progress — if you have any feedback [please submit it here](https://docs.google.com/forms/d/e/1FAIpQLSfg0RSzLw2MXCAUJMgsXCGeey7zA5y_pjVt8P24eeQySNOgaA/viewform?usp=sf_link).
+
+Here are some additional resources to help you learn data wrangling through R:
+
+* [R for Data Science](https://r4ds.had.co.nz/index.html)
+* [RStudio Education](https://education.rstudio.com/learn/beginner/)
+* [Codeacademy](https://www.codecademy.com/learn/learn-r)
+
+...and SQL:
+
+* [Mode SQL Tutorial](https://mode.com/sql-tutorial/)
+* [W3 Schools](https://www.w3schools.com/sql/)
+* [Codeacademy](https://www.codecademy.com/learn/learn-sql)
+* [KhanAcademy](https://www.khanacademy.org/computing/computer-programming/sql)
+* [SQL Zoo](https://sqlzoo.net/wiki/SQL_Tutorial)
+
+Created by [Akshay Swaminathan](https://www.linkedin.com/in/akshay-swaminathan-68286b51/) and [Lathan Liou](https://lathanliou.com/)
 
 ```{r echo = FALSE, results='asis', include=FALSE}
 make_topic <- function(topic_name, question_fun, solution_fun, params) { 
@@ -42,25 +85,44 @@ make_topic <- function(topic_name, question_fun, solution_fun, params) {
 make_question <- function(exercise_title,
                           exercise_text,
                           exercise_name,
+                          sql = F,
                           ...) {
-  knit_expand(text=c("### {{exercise_title}}",
+  
+  if (sql) {
+    text_ <- c("### {{exercise_title}}",
+                     "{{exercise_text}}",
+                     '```{sql {{exercise_name}}, exercise = TRUE, connection = "db_con"}',
+                     '--Enter your code here',
+                     '```')
+  } else {
+    text_ <- c("### {{exercise_title}}",
                      "{{exercise_text}}",
                      '```{r {{exercise_name}}, exercise = TRUE}',
                      '#Enter your code here',
-                     '```'))
+                     '```')
+  }
+  
+  knit_expand(text = text_)
 }
+
 
 make_solution <- function(exercise_name,
                           check_code = 0,
                           solution_code,
+                          sql = F,
                           ...) {
+  
+  result_string <- ifelse(sql, 
+                          "solution_return <- function() {DBI::dbGetQuery(db_con, '{{solution_code}}')}", 
+                          "solution_return <- function() { {{solution_code}} }")
+  
   if (check_code == 1) {
     check_chunk <- c('```{r {{exercise_name}}-code-check}',
                      'grade_code()')
   } else {
     check_chunk <- c('```{r {{exercise_name}}-check}',
                      "set.seed(50)",
-                     "solution_return <- function() { {{solution_code}} }",
+                     result_string,
                      #'solution <- {{solution_code}}',
                      'solution <- solution_return()',
                      'grade_this({
@@ -71,11 +133,23 @@ make_solution <- function(exercise_name,
   # fail(waldo::compare(.result, solution, ignore_formula_env = T))
 })')
   }
-  knit_expand(text=c('```{r {{exercise_name}}-solution}',
+  
+  if (sql) {
+    result_string <- "DBI::dbGetQuery(db_con, .solution_code)"
+    knit_expand(text=c('```{sql {{exercise_name}}-solution, connection = "db_con"}',
                      '{{solution_code}}',
                      '```',
                      check_chunk,
                      '```'))
+  } else {
+    knit_expand(text=c('```{r {{exercise_name}}-solution}',
+                     '{{solution_code}}',
+                     '```',
+                     check_chunk,
+                     '```'))
+  }
+  
+  
 }
 
 googlesheets4::gs4_deauth()
@@ -84,6 +158,23 @@ all_sheets_base <- googlesheets4::sheet_names(param_google_sheets)
 all_sheets <- all_sheets_base[which(!grepl("\\[exclude\\]", all_sheets_base))]
 all_params <- map(all_sheets, ~googlesheets4::read_sheet(param_google_sheets, sheet = .x)) %>% 
   setNames(all_sheets)
+
+all_params$`Queries: SQL` <- all_params %>% 
+  map_dfr(function(param_df) {
+    if ("sql_code" %in% names(param_df)) {
+      param_df %>% 
+        select(-solution_code) %>% 
+        rename(solution_code = sql_code)
+    } else {
+      return(NULL)
+    }
+  }) %>% 
+  filter(!is.na(solution_code)) %>% 
+  mutate(exercise_title = paste0("Exercise ", row_number()),
+         exercise_name = paste0("sql", row_number())) %>% 
+  mutate(sql = T)
+
+all_params <- all_params[rev(sort(names(all_params)))]
 
 all_src <- imap(all_params, ~make_topic(.y, make_question, make_solution, .x))
 all_res <- map(all_src, ~knit_child(text = unlist(.x)))
@@ -94,5 +185,4 @@ all_res <- map(all_src, ~knit_child(text = unlist(.x)))
 map(all_res, cat)
 ```
 
-## About
-Created by [Akshay Swaminathan](https://www.linkedin.com/in/akshay-swaminathan-68286b51/) and [Lathan Liou](https://lathanliou.com/)
+
